@@ -1,51 +1,97 @@
 ---
 interface Props {
 	title: string;
+	desc: string;
 }
 
-const { title } = Astro.props;
+const { title, desc } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content={desc} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
+		<div class="topnav">
+			<h3 style="float: left;">redtrack</h3>
+			<!-- TODO: js -->
+			<div style="display: flex; float: right;">
+				<a class="rightlink" href="/login">login</a>
+				<a class="rightlink" href="/register">register</a>
+			</div>
+		</div>
 		<slot />
 	</body>
 </html>
 <style is:global>
+	.topnav a, .topnav h3 {
+		color: var(--text);
+		text-decoration: none;
+		margin: 14px 18px;
+	}
+
+	.topnav {
+		overflow: hidden;
+		text-align: center;
+		background-color: var(--surface0);
+		/* display: flex; */
+		justify-content: space-between;
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	@font-face {
+		font-family: 'Atkinson Hyperlegible';
+		src: url('/fonts/Atkinson-Hyperlegible-Regular-102a.woff2') format('woff2');
+		font-weight: normal;
+		font-style: normal;
+		font-display: swap;
+	}
+
 	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
+		/* catppuccin mocha */
+		--rosewater: #f5e0dc;
+		--flamingo: #f2cdcd;
+		--pink: #f5c2e7;
+		--red: #f38ba8;
+		--maroon: #eba0ac;
+		--peach: #fab387;
+		--yellow: #f9e2af;
+		--green: #a6e3a1;
+		--teal: #94e2d5;
+		--sky: #89dceb;
+		--sapphire: #74c7ec;
+		--blue: #89b4fa;
+		--lavender: #b4befe;
+		--text: #cdd6f4;
+		--subtext1: #bac2de;
+		--subtext0: #a6adc8;
+		--overlay2: #9399b2;
+		--overlay1: #7f849c;
+		--overlay0: #6c7086;
+		--surface2: #585b70;
+		--surface1: #45475a;
+		--surface0: #313244;
+		--base: #1e1e2e;
+		--mantle: #181825;
+		--crust: #11111b;
+		--font: 'Atkinson Hyperlegible';
+		font-family: var(--font);
+		background-color: var(--base);
 	}
 	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+		margin: 0;
+		padding: 0;
 	}
 </style>
